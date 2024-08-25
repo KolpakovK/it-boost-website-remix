@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components{
+    .block-size{
+        @apply w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl max-w-screen-2xl;
+    }
+
+    .btn{
+        @apply h-10 flex items-center gap-2 px-4 rounded-xl 
+        bg-gray-100 hover:bg-gray-300
+        text-base font-semibold text-gray-900 leading-none
+        duration-200
+    }
+
+    .btn.btn-nav{
+        @apply bg-transparent hover:bg-gray-50 text-gray-600 hover:text-orange-500 px-3 font-normal;
+    }
+
+    .btn.btn-outline{
+        @apply bg-transparent hover:bg-gray-50
+        text-gray-700 hover:text-gray-900
+        border border-gray-200
+    }
+
+    .btn.btn-primary{
+        @apply bg-green-500 hover:bg-green-600
+        text-white;
+    }
+}
