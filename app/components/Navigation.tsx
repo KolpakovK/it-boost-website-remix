@@ -49,7 +49,7 @@ export default function Navigation(){
         <div className={clsx("flex flex-col items-center bg-white fixed top-0 left-0 w-full z-50",mobileOpened && "h-screen")}>
             <div className="container flex justify-between items-center gap-8 py-2">
                 {/* Logo */}
-                <img src="/ITBoost_Logo.svg" alt="Logo" className="h-12 w-fit pointer-events-none select-none"/>
+                <img src="/ITBoost_Logo.svg" alt="Logo" className="h-12 w-12 object-contain pointer-events-none select-none"/>
 
 
                 {/* Navigation */}
