@@ -12,7 +12,7 @@ export const meta: MetaFunction = () => {
     ];
 };
 
-import { LucidePhoneCall, ArrowUpRight, TimerReset, BanknoteIcon } from "lucide-react";
+import { LucidePhoneCall, ArrowUpRight, TimerReset, BanknoteIcon, Users2, AppWindow, Code2 } from "lucide-react";
 
 import Timer from "~/components/Timer";
 import ContactForm from "~/components/ContactForm";
@@ -191,7 +191,10 @@ export async function loader() {
 
 const _icons:any = {
     "ArrowUpRight":(<ArrowUpRight size={20}/>),
-    "BanknoteIcon":(<BanknoteIcon className="text-gray-700 mix-blend-darken" size={40}/>)
+    "BanknoteIcon":(<BanknoteIcon className="text-gray-700 mix-blend-darken" size={40}/>),
+    "Users2":(<Users2 className="text-gray-700 mix-blend-darken" size={40}/>),
+    "AppWindow":(<AppWindow className="text-gray-700 mix-blend-darken" size={40}/>),
+    "Code2":(<Code2 className="text-gray-700 mix-blend-darken" size={40}/>),
 }
 
 const _colors = {
