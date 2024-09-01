@@ -20,7 +20,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
 
         <script dangerouslySetInnerHTML={ { __html: `
-          (function(h:any,o:any,t:any,j:any,a:any,r:any){
+          (function(h,o,t,j,a,r){
                 h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
                 h._hjSettings={hjid:5119155,hjsv:6};
                 a=o.getElementsByTagName('head')[0];
