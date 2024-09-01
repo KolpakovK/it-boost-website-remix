@@ -10,7 +10,7 @@ function FAQ({question,description}:Readonly<{question:string,description:string
             <ChevronDown size={20}/>
         </div>
         {isOpened && (
-            <p className="p-4 rounded-xl bg-violet-100 text-base text-gray-800">{description}</p>
+            <p className="p-4 rounded-xl bg-violet-100 text-base lg:text-lg text-gray-800">{description}</p>
         )}
     </div>
     )

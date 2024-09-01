@@ -27,16 +27,16 @@ const navigation = {
     ],
     actions:[
         {
-            label:"+380 (99) 9999 999",
+            label:"+380 (66) 383 21 13",
             icon:(<LucidePhoneCall size={20}/>),
             type:"btn-outline",
-            href:"#"
+            href:"tel: +380663832113"
         },
         {
             label:"Консультація",
             icon:(<ArrowUpRight size={20}/>),
             type:"btn-primary",
-            href:"#"
+            href:"#contacts"
         },
     ]
 }

@@ -1,18 +1,20 @@
-import type { MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import type { MetaFunction, ActionFunctionArgs } from "@remix-run/node";
+import { useLoaderData, useActionData } from "@remix-run/react";
 import { GraphQLClient, gql } from 'graphql-request'
 import { useState, useEffect } from "react";
 import { format, intervalToDuration } from "date-fns";
 import { clsx } from 'clsx';
+import { useLocation } from "react-router-dom";
 
 export const meta: MetaFunction = () => {
     return [
-        { title: "New Remix App" },
-        { name: "description", content: "Welcome to Remix!" },
+        { title: "IT BOOST" },
+        { name: "description", content: "Захоплююча онлайн-школа, де діти віком від 8 до 14 років отримують потужний старт у світі інформаційних технологій." },
+        { name: "keywords", content: "IT,Python,діти,розробка,ігри,дизайн,програмування,Україна,школа,навчання,дистанційно,дешево,безпечно,курси,створення ігор" },
     ];
 };
 
-import { LucidePhoneCall, ArrowUpRight, TimerReset, BanknoteIcon, Users2, AppWindow, Code2 } from "lucide-react";
+import { LucidePhoneCall, ArrowUpRight, TimerReset, BanknoteIcon, Users2, AppWindow, Code2, UserRoundSearch, GraduationCap, ShieldCheck } from "lucide-react";
 
 import Timer from "~/components/Timer";
 import ContactForm from "~/components/ContactForm";
@@ -20,6 +22,29 @@ import Navigation from "~/components/Navigation";
 import FAQs from "~/components/FAQ";
 
 
+
+export async function action({request}:ActionFunctionArgs) {
+    console.log("Test");
+    const data = await request.formData();
+
+    console.log(data.get("status"))
+
+    const response = await fetch(`${process.env.SERVER_URL}web-site/call_back_create/`,{
+        method: "POST",
+        headers:{
+            "X-API-KEY" : `1ewr5gwergsdf53g4w1ergwdfs65g4`,
+        },
+        body: data
+    }).then( res => res.json() ).then( (data_res:any) => {
+        console.log(data_res);
+
+        return data_res;
+    }).catch( error => {
+        return null;
+    });
+
+    return response;
+}
 
 export async function loader() {
 
@@ -191,10 +216,13 @@ export async function loader() {
 
 const _icons:any = {
     "ArrowUpRight":(<ArrowUpRight size={20}/>),
-    "BanknoteIcon":(<BanknoteIcon className="text-gray-700 mix-blend-darken" size={40}/>),
-    "Users2":(<Users2 className="text-gray-700 mix-blend-darken" size={40}/>),
-    "AppWindow":(<AppWindow className="text-gray-700 mix-blend-darken" size={40}/>),
-    "Code2":(<Code2 className="text-gray-700 mix-blend-darken" size={40}/>),
+    "BanknoteIcon":(<BanknoteIcon size={40}/>),
+    "Users2":(<Users2 size={40}/>),
+    "AppWindow":(<AppWindow size={40}/>),
+    "Code2":(<Code2 size={40}/>),
+    "UserRoundSearch": (<UserRoundSearch size={40}/>),
+    "GraduationCap": (<GraduationCap size={40}/>),
+    "ShieldCheck": (<ShieldCheck size={40}/>),
 }
 
 const _colors = {
@@ -219,7 +247,7 @@ const _colors = {
 }
 
 export default function Index() {
-
+    const location = useLocation();
     const _loader_data:any = useLoaderData();
     const [isLoading,setIsLoading] = useState(true)
 
@@ -227,6 +255,15 @@ export default function Index() {
         setIsLoading(false)
         console.log(_loader_data)
     }, [_loader_data])
+
+    useEffect(() => {
+        if (location.hash) {
+            const element = document.getElementById(location.hash.substring(1));
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    }, [location]);
 
     return (
         <div className="flex flex-col">
@@ -313,8 +350,10 @@ export default function Index() {
                             
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mt-4 lg:mt-0">
                                 {_loader_data.about_us.cards.map( (card:any,index:number) => (
-                                    <div key={index} className={clsx("p-6 rounded-2xl flex flex-col gap-4", card.color)}>
-                                        {_icons[card.icon]}
+                                    <div key={index} className={clsx("p-6 rounded-2xl flex flex-col gap-4", _colors.bg[index])}>
+                                        <div className={_colors.text[index]}>
+                                            {_icons[card.icon]}
+                                        </div>
 
                                         <div className="flex flex-col gap-2">
                                             <p className="text-lg text-gray-900 font-bold">{card.title}</p>
@@ -346,7 +385,7 @@ export default function Index() {
                                     <p className="text-gray-900 text-lg lg:text-3xl font-display leading-tight">{_loader_data.courses.courses_list.length>1 ? _loader_data.courses.title : _loader_data.courses.courses_list[0].title}</p>
                                 </div>
 
-                                <div className="flex flex-col gap-4 lg:gap-8">
+                                <div className="flex flex-col gap-4 lg:gap-8 lg:w-3/4">
                                     {_loader_data.courses.courses_list.length>1 ? (
                                         <div className="flex flex-col gap-6">
                                             { _loader_data.courses.description.map( (desc:any,index:number) => (
@@ -371,22 +410,22 @@ export default function Index() {
                         </div>
 
                         {_loader_data.courses.courses_list.length>1 ? (
-                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                            <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6">
                                 { _loader_data.courses.courses_list.map( (course:any,index:number) => (
                                     <div key={index} className="p-4 rounded-md bg-white flex flex-col gap-2">
                                         <p className="p-3 rounded-full border-violet-500 text-violet-500 text-sm font-bold">{course.duration}</p>
-                                        <p className="text-base text-gray-900">{course.title}</p>
-                                        <p className="text-sm text-gray-500">{course.short_description}</p>
+                                        <p className="text-base font-bold text-gray-900">{course.title}</p>
+                                        <p className="text-base lg:text-tiny text-gray-500">{course.short_description}</p>
                                     </div>
                                 ) )}
                             </div>
                         ) : (
-                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                            <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6">
                                 { _loader_data.courses.courses_list[0].modules.map( (module:any,index:number) => (
                                     <div key={index} className="p-4 rounded-xl bg-white flex flex-col gap-2">
                                         <p className="px-3 py-1 rounded-full border w-fit border-violet-500 text-violet-500 text-tiny font-bold">{module.duration}</p>
-                                        <p className="text-base text-gray-900">{module.title}</p>
-                                        <p className="text-tiny text-gray-500">{module.short_description}</p>
+                                        <p className="text-base font-bold text-gray-900">{module.title}</p>
+                                        <p className="text-base lg:text-tiny text-gray-500">{module.short_description}</p>
                                     </div>
                                 ) )}
                             </div>
@@ -408,7 +447,7 @@ export default function Index() {
                                     <p className="font-display text-lg lg:text-2xl text-black">{_loader_data.results.title}</p>
                                 </div>
 
-                                <p className="text-base lg:text-lg text-gray-600 text-left flex flex-col">
+                                <p className="text-base text-gray-600 text-left flex flex-col">
                                     {_loader_data.results.description}
                                 </p>
                             </div>
@@ -422,12 +461,12 @@ export default function Index() {
 
                         </div>
 
-                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6">
                             {_loader_data.results.cards.map( (card:any,index:number) => (
                                 <div key={index} className="p-4 flex flex-col gap-2 bg-gray-100 rounded-2xl">
                                     <p className=" text-tiny text-gray-700">{index+1}</p>
                                     <p className={clsx("text-base lg:text-lg font-bold",_colors.text[index])}>{card.title}</p>
-                                    <p className="text-tiny lg:text-base text-gray-500">{card.description}</p>
+                                    <p className="text-base text-gray-500">{card.description}</p>
                                 </div>
                             ) )}
                         </div>
@@ -454,9 +493,13 @@ export default function Index() {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
 
                             {_loader_data.service.cards.map( (card:any,index:number) => (
-                                <div key={index} className={clsx("p-4 lg:p-12 flex flex-col gap-4 rounded-3xl",index==0 && "row-span-2", _colors.bg[index])}>
-                                    <p className={clsx("px-3 w-fit py-1 rounded-full text-base",_colors.border[index],_colors.text[index])}>{card.description}</p>
-                                    <p className="text-base lg:text-lg font-bold text-gray-900 font-display">{card.title}</p>
+                                <div key={index} className={clsx("p-4 lg:p-12 flex flex-col gap-4 rounded-3xl relative",index==0 && "row-span-2", _colors.bg[index])}>
+                                    <p className={clsx("px-3 w-fit py-1 rounded-full text-base z-10",_colors.border[index],_colors.text[index])}>{card.description}</p>
+                                    <p className={clsx("text-base lg:text-lg font-bold font-sans z-10",_colors.text[index])}>{card.title}</p>
+
+                                    {index==0 && (
+                                        <img src="DecorationStarts.svg" alt="decoration" className=" absolute left-6 bottom-6 h-1/4 hidden lg:block"/>
+                                    )}
                                 </div>
                             ) )}
 
@@ -511,8 +554,10 @@ export default function Index() {
                             
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mt-4 lg:mt-0">
                                 {_loader_data.values.cards.map( (card:any,index:number) => (
-                                    <div key={index} className={clsx("p-6 rounded-2xl flex flex-col gap-4", card.color)}>
-                                        {_icons[card.icon]}
+                                    <div key={index} className={clsx("p-6 rounded-2xl flex flex-col gap-4", _colors.bg[index])}>
+                                        <div className={_colors.text[index]}>
+                                            {_icons[card.icon]}
+                                        </div>
 
                                         <div className="flex flex-col gap-2">
                                             <p className="text-lg text-gray-900 font-bold">{card.title}</p>
