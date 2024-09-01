@@ -30,6 +30,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
             })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
         ` } }></script>
 
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-5VKNP98KB4"></script>
+        <script dangerouslySetInnerHTML={ { __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-5VKNP98KB4');
+        ` } }></script>
+
       </head>
       <body>
         {children}
