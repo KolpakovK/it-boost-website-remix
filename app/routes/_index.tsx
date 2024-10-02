@@ -613,8 +613,8 @@ export default function Index() {
                 <div className="flex justify-center pb-12">
                     <div className="container flex gap-2 flex-wrap items-center">
 
-                        <a href="/privacy-policy" className=" text-violet-500 underline hover:text-violet-300 duration-150">ПОЛІТИКА КОНФІДЕНЦІЙНОСТІ ТА ЗАХИСТУ ПЕРСОНАЛЬНИХ ДАНИХ</a>
-                        <a href="/terms-of-use" className=" text-violet-500 underline hover:text-violet-300 duration-150">ДОГОВІР НА НАДАННЯ ПОСЛУГ З НАВЧАННЯ ДИЗАЙНУ ТА ПРОГРАМУВАННЮ ДІТЕЙ                        </a>
+                        <a href="/privacy-policy" className=" text-violet-500 underline hover:text-violet-300 duration-150">Політика конфіденційності</a>
+                        <a href="/terms-of-use" className=" text-violet-500 underline hover:text-violet-300 duration-150">Договір на надання послуг</a>
 
                     </div>
                 </div>

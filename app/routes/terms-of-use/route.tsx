@@ -184,7 +184,7 @@ export default function LegalPage(){
                 <Navigation tabs={false}/>
             </div>
 
-            <div className="grid grid-cols-4 lg:grid-cols-8 py-20">
+            <div className="grid grid-cols-4 lg:grid-cols-8 py-20 px-4">
                 <div className=" col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-4 bard">
                     <Markdown>{content}</Markdown>
                 </div>
