@@ -41,7 +41,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
                         gtag('config', 'G-5VKNP98KB4');
                 ` }}></script>
 
-
                 <script dangerouslySetInnerHTML={{
                     __html: `
                     !function(f,b,e,v,n,t,s)
@@ -52,11 +51,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     t.src=v;s=b.getElementsByTagName(e)[0];
                     s.parentNode.insertBefore(t,s)}(window, document,'script',
                     'https://connect.facebook.net/en_US/fbevents.js');
-                    fbq('init', '743338941257039');
+                    fbq('init', '934521751839372');
                     fbq('track', 'PageView');
                 ` }}></script>
 
-                <noscript dangerouslySetInnerHTML={{ __html: `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=743338941257039&ev=PageView&noscript=1"/>`}}></noscript>
+                <noscript dangerouslySetInnerHTML={{ __html: `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=934521751839372&ev=PageView&noscript=1"/>`}}></noscript>
             </head>
             <body>
                 {children}
