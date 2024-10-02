@@ -24,10 +24,8 @@ import FAQs from "~/components/FAQ";
 
 
 export async function action({request}:ActionFunctionArgs) {
-    console.log("Test");
     const data = await request.formData();
 
-    console.log(data.get("status"))
 
     const response = await fetch(`${process.env.SERVER_URL}web-site/call_back_create/`,{
         method: "POST",
@@ -36,7 +34,6 @@ export async function action({request}:ActionFunctionArgs) {
         },
         body: data
     }).then( res => res.json() ).then( (data_res:any) => {
-        console.log(data_res);
 
         return data_res;
     }).catch( error => {
@@ -570,14 +567,14 @@ export default function Index() {
                         </div>
 
                         <div className="h-full min-h-[450px] col-start-6 col-span-3">
-                            <img src={_loader_data.about_us.img.src} alt="About us image" className="w-full h-full object-cover rounded-2xl"/>
+                            <img src={_loader_data.values.img.src} alt="About us image" className="w-full h-full object-cover rounded-2xl"/>
                         </div>
                     </div>
                 </div>
                 
 
                 {/* CONTACTS */}
-                <div className="flex justify-center pb-32 lg:pb-40" id="contacts">
+                <div className="flex justify-center pb-8 lg:pb-24" id="contacts">
                     <div className="container">
                         <div className="box-border p-4 lg:p-16 rounded-xl lg:rounded-3xl bg-violet-100 grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-16">
 
@@ -596,12 +593,12 @@ export default function Index() {
                                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 pt-3 lg:pt-8">
                                     <div className="flex flex-col gap-1">
                                         <p className=" text-tiny text-gray-600 leading-none">Мобільній</p>
-                                        <p className=" text-[20px] font-bold text-black leading-none">{_loader_data.contacts.mobile}</p>
+                                        <a href={`tel:${_loader_data.contacts.mobile}`} className=" text-[20px] font-bold text-black leading-none">{_loader_data.contacts.mobile}</a>
                                     </div>
 
                                     <div className="flex flex-col gap-1">
                                         <p className=" text-tiny text-gray-600 leading-none">Пошта</p>
-                                        <p className=" text-[20px] font-bold text-black leading-none">{_loader_data.contacts.mail}</p>
+                                        <a href={`mailto:${_loader_data.contacts.mail}`} className=" text-[20px] font-bold text-black leading-none">{_loader_data.contacts.mail}</a>
                                     </div>
                                 </div>
                             </div>
@@ -611,7 +608,16 @@ export default function Index() {
                         </div>
                     </div>
                 </div>
+                
 
+                <div className="flex justify-center pb-12">
+                    <div className="container flex gap-2 flex-wrap items-center">
+
+                        <a href="/privacy-policy" className=" text-violet-500 underline hover:text-violet-300 duration-150">ПОЛІТИКА КОНФІДЕНЦІЙНОСТІ ТА ЗАХИСТУ ПЕРСОНАЛЬНИХ ДАНИХ</a>
+                        <a href="/terms-of-use" className=" text-violet-500 underline hover:text-violet-300 duration-150">ДОГОВІР НА НАДАННЯ ПОСЛУГ З НАВЧАННЯ ДИЗАЙНУ ТА ПРОГРАМУВАННЮ ДІТЕЙ                        </a>
+
+                    </div>
+                </div>
 
             </div>
             )}

@@ -6,7 +6,7 @@ function FAQ({question,description}:Readonly<{question:string,description:string
     return (
     <div className="flex flex-col gap-2 pb-2 border-b border-gray-200" onClick={ () => setIsOpened(!isOpened) }>
         <div className="flex justify-between">
-            <p className="text-base lg:text-lg font-display">{question}</p>
+            <p className="text-base lg:text-lg font-display hover:cursor-pointer hover:opacity-75 duration-150">{question}</p>
             <ChevronDown size={20}/>
         </div>
         {isOpened && (

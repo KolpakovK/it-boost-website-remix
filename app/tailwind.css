@@ -11,6 +11,7 @@
     .btn{
         @apply h-10 flex items-center gap-2 px-4 rounded-xl 
         bg-gray-100 hover:bg-gray-300
+        hover:scale-105
         text-base font-semibold text-gray-900 leading-none
         duration-200
     }
@@ -28,5 +29,41 @@
     .btn.btn-primary{
         @apply bg-green-500 hover:bg-green-600
         text-white;
+    }
+
+    .bard h1{
+        @apply font-display text-slate-950 leading-tight text-xl;
+    }
+
+    .bard h2{
+        @apply font-display text-slate-950 leading-tight text-lg;
+    }
+
+    .bard p{
+        @apply font-sans text-base text-slate-700 leading-normal;
+    }
+
+    .bard strong{
+        @apply text-slate-950;
+    }
+
+    .bard a{
+        @apply text-violet-500 hover:underline;
+    }
+
+    .bard ul{
+        @apply list-inside list-disc;
+    }
+
+    .bard ol{
+        @apply list-inside list-decimal;
+    }
+
+    .bard ul li p, .bard ol li p{
+        @apply inline-block;
+    }
+
+    .bard ul li, .bard ol li{
+        @apply text-slate-700 text-base leading-normal
     }
 }
