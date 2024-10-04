@@ -106,6 +106,12 @@ export async function loader() {
                     short_description
                     subtitle
                     title
+                    paymentOption1Title
+                    paymentOption1Description
+                    paymentOption1Price
+                    paymentOption2Title
+                    paymentOption2Description
+                    paymentOption2Price
                     }
                 }
                 description {
@@ -417,14 +423,30 @@ export default function Index() {
                                 ) )}
                             </div>
                         ) : (
-                            <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6">
-                                { _loader_data.courses.courses_list[0].modules.map( (module:any,index:number) => (
-                                    <div key={index} className="p-4 rounded-xl bg-white flex flex-col gap-2">
-                                        <p className="px-3 py-1 rounded-full border w-fit border-violet-500 text-violet-500 text-tiny font-bold">{module.duration}</p>
-                                        <p className="text-base font-bold text-gray-900">{module.title}</p>
-                                        <p className="text-base lg:text-tiny text-gray-500">{module.short_description}</p>
+                            <div className="flex flex-col gap-4 lg:gap-8">
+                                <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6">
+                                    { _loader_data.courses.courses_list[0].modules.map( (module:any,index:number) => (
+                                        <div key={index} className="p-4 rounded-xl bg-white flex flex-col gap-2">
+                                            <p className="px-3 py-1 rounded-full border w-fit border-violet-500 text-violet-500 text-tiny font-bold">{module.duration}</p>
+                                            <p className="text-base font-bold text-gray-900">{module.title}</p>
+                                            <p className="text-base lg:text-tiny text-gray-500">{module.short_description}</p>
+                                        </div>
+                                    ) )}
+                                </div>
+
+                                <div className="flex flex-col lg:flex-row gap-6">
+                                    <div className="px-6 py-8 rounded-xl bg-violet-500 flex flex-col gap-2 w-full hover:scale-105 duration-150">
+                                        <p className="text-lg font-medium text-white">{_loader_data.courses.courses_list[0].paymentOption1Title}</p>
+                                        <p className="text-base text-white/75">{_loader_data.courses.courses_list[0].paymentOption1Description}</p>
+                                        <p className="text-xl font-bold text-white">{_loader_data.courses.courses_list[0].paymentOption1Price} <span className=" text-tiny text-white/50">гривень за місяць</span></p>
                                     </div>
-                                ) )}
+
+                                    <div className="px-6 py-8 rounded-xl bg-violet-200 flex flex-col gap-2 w-full hover:scale-105 duration-150">
+                                        <p className="text-lg font-medium text-gray-900">{_loader_data.courses.courses_list[0].paymentOption2Title}</p>
+                                        <p className="text-base  text-gray-500">{_loader_data.courses.courses_list[0].paymentOption2Description}</p>
+                                        <p className="text-xl font-bold text-gray-800">{_loader_data.courses.courses_list[0].paymentOption2Price} <span className=" text-tiny text-gray-600">гривень за місяць</span></p>
+                                    </div>
+                                </div>
                             </div>
                         )}
                         
